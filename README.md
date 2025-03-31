@@ -4,8 +4,7 @@ plotly dash using arcgis map sdk for javascript
 html2dash，采用AMD方式加载，可直接在dash中使用
 
 
-![html2dash](./assets/example/html2dash.png)
-
+![html2dash](./assets/example/html2dash.jpg)
 
 ![mapview](./assets/example/mapview.jpg)
 
