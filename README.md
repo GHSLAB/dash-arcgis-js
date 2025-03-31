@@ -12,4 +12,3 @@ html2dash，采用AMD方式加载，可直接在dash中使用
 ![sceneview](./assets/example/sceneview.jpg)
 
 ![buildinglayer](./assets/example/buildinglayer.jpg)
-
