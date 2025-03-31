@@ -1,5 +1,5 @@
 # dash-arcgis-js
-plotly dash using arcgis map sdk for javascript
+plotly dash using `ArcGIS Maps SDK for JavaScript`
 
 html2dash，采用AMD方式加载，可直接在dash中使用
 
