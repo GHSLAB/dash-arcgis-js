@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>
+      IntegratedMesh3DTilesLayer | Sample | ArcGIS Maps SDK for JavaScript 4.33
+    </title>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.33/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.33/"></script>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script type="module">
+      const [
+        WebScene,
+        SceneView,
+        IntegratedMesh3DTilesLayer,
+        Expand,
+        LayerList,
+        Legend,
+      ] = await $arcgis.import([
+        "@arcgis/core/WebScene.js",
+        "@arcgis/core/views/SceneView.js",
+        "@arcgis/core/layers/IntegratedMesh3DTilesLayer.js",
+        "@arcgis/core/widgets/Expand.js",
+        "@arcgis/core/widgets/LayerList.js",
+        "@arcgis/core/widgets/Legend.js",
+      ]);
+
+      /*************************************
+       * Load webscene with layer showing
+       * building energy ratings
+       *************************************/
+      const webscene = new WebScene({
+        portalItem: {
+          id: "5b177c2579bf45159bb91e2a13b4218b",
+        },
+      });
+
+      /*************************************
+       * Create IntegratedMesh3DTilesLayer layer
+       * and add it to the webscene
+       ***********************************/
+      const layer = new IntegratedMesh3DTilesLayer({
+        url: "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Utrecht_3D_Tiles_Integrated_Mesh/3DTilesServer/tileset.json",
+        title: "Utrecht Integrated Mesh 3D Tiles",
+      });
+
+      webscene.add(layer);
+
+      /*************************************
+       * Create the View and add expandable
+       * LayerList and Legend widgets to the UI
+       ***********************************/
+      const view = new SceneView({
+        container: "viewDiv",
+        map: webscene,
+      });
+
+      const expandLegend = new Expand({
+        content: new Legend({
+          view: view,
+        }),
+        expanded: true,
+        expandTooltip: "Expand Legend",
+        group: "top-right",
+        view: view,
+      });
+
+      const expandLayerList = new Expand({
+        content: new LayerList({
+          view: view,
+        }),
+        expandTooltip: "Expand Layer List",
+        group: "top-right",
+        view: view,
+      });
+
+      view.ui.add([expandLegend, expandLayerList], "top-right");
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
